@@ -3,7 +3,6 @@ const posts = require('./posts');
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
-const git = require('simple-git')();
 
 
 const app = express();
@@ -96,17 +95,6 @@ app.post('/send-new-post', upload.single('image'), (req, res) => {
     };
     posts.push(newPost);
     fs.writeFileSync('./posts.js', `const posts = ${JSON.stringify(posts, null, 2)}\nmodule.exports = posts;`);
-
-    // Sync the entire project folder to GitHub after saving the new post
-    git.add('.')
-        .commit('Added new post')
-        .push('origin', 'main', (err) => {
-            if (err) {
-                console.error('Error pushing to GitHub:', err);
-            } else {
-                console.log('Successfully pushed to GitHub');
-            }
-        });
 
     res.redirect('/');
 });
