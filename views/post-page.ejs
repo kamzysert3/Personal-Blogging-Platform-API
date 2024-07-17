@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs'); %>
+</head>
+<body>
+    <%- include('./partials/header-alt.ejs'); %>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Blog posts -->
+                <% posts.forEach(function (post) {%>
+
+                    <%- include('./partials/posts.ejs', {
+                        image : post.image,
+                        title : post.title,
+                        content : post.content,
+                        author : post.author,
+                        date : post.date,
+                        tag : post.tag,
+                        id : post.id
+                    }) %>
+
+                <% }); %>
+            </div>
+        </div>
+    </main>
+    
+    <%- include('./partials/footer.ejs'); %>
+    <script type="text/javascript" src="js/post-script.js"></script>
+</body>
+</html>

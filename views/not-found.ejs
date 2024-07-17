@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs'); %>
+</head>
+<body>
+    <%- include('./partials/header-alt.ejs'); %>
+    <div class="alert alert-info" id="alert-info" role="alert" style="display: block !important;">
+        Blog Not Found
+    </div>
+    <main class="container">
+        <div class="row"></div>
+    </main>
+    
+    <%- include('./partials/footer.ejs'); %>
+    <script>
+        document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+    </script>
+</body>
+</html>

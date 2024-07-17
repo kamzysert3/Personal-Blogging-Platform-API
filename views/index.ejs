@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs'); %>
+</head>
+<body>
+    <%- include('./partials/header.ejs'); %>
+    <div class="alert alert-info" id="alert-info" role="alert">
+        Nothing to show
+    </div>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Blog posts -->
+                <% posts.forEach(function (post) {%>
+
+                    <%- include('./partials/post-template.ejs', {
+                        postInPage: postInPage,
+                        post: post,
+                        image : post.image,
+                        title : post.title,
+                        content : post.content,
+                        author : post.author,
+                        date : post.date,
+                        tag : post.tag,
+                        id : post.id
+                    }) %>
+
+                <% }); %>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example" class="pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+                            <a class="page-link" href="?page=<%= currentPage - 1 %>" tabindex="-1" aria-disabled="<%= currentPage === 1 %>">Previous</a>
+                        </li>
+                        <% for(let i = 1; i <= totalPages; i++) { %>
+                            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                            </li>
+                        <% } %>
+                        <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+                            <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-disabled="<%= currentPage === totalPages %>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+    
+    <%- include('./partials/footer.ejs'); %>
+    <script type="text/javascript" src="js/index-script.js"></script>
+</body>
+</html>
