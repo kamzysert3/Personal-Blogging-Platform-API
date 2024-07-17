@@ -3,7 +3,6 @@ const posts = require('./posts');
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
-const git = require('simple-git')();
 
 const app = express();
 app.set('view engine', 'ejs');
